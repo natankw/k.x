@@ -81,6 +81,35 @@ saida.innerHTML +=
 
 }
 
+  // TERMINAL AUTO DIGITAÇÃO
+
+let mensagensBoot = [
+"K.x@cyber:~$ acesso iniciado...",
+"K.x@cyber:~$ carregando ferramentas...",
+"K.x@cyber:~$ sistema protegido...",
+"K.x@cyber:~$ pronto para comandos."
+];
+
+
+let linha = 0;
+
+
+function digitarTerminal(){
+
+if(linha < mensagensBoot.length){
+
+saida.innerHTML += "<br>" + mensagensBoot[linha];
+
+linha++;
+
+setTimeout(digitarTerminal,900);
+
+}
+
+}
+
+
+setTimeout(digitarTerminal,1500);
 
 
 else if(cmd==="about"){
