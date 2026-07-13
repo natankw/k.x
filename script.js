@@ -1,18 +1,20 @@
 // TERMINAL
 
-const comando=document.getElementById("comando");
-const saida=document.getElementById("saida");
+const comando = document.getElementById("comando");
+const saida = document.getElementById("saida");
 
 
-comando.addEventListener("keydown",e=>{
+if(comando && saida){
+
+comando.addEventListener("keydown", e=>{
 
 if(e.key==="Enter"){
 
-let cmd=comando.value.toLowerCase();
+let cmd = comando.value.toLowerCase();
 
 
 saida.innerHTML += 
-"<br>K.x@cyber:~$ "+cmd;
+"<br>K.x@cyber:~$ " + cmd;
 
 
 if(cmd==="help"){
@@ -60,13 +62,20 @@ comando.value="";
 
 });
 
+
+}
+
+
+
 // TERMINAL AUTO DIGITAÇÃO
 
 let mensagensBoot = [
+
 "K.x@cyber:~$ acesso iniciado...",
 "K.x@cyber:~$ carregando ferramentas...",
 "K.x@cyber:~$ sistema protegido...",
 "K.x@cyber:~$ pronto para comandos."
+
 ];
 
 
@@ -75,7 +84,7 @@ let linha = 0;
 
 function digitarTerminal(){
 
-if(linha < mensagensBoot.length){
+if(saida && linha < mensagensBoot.length){
 
 saida.innerHTML += "<br>" + mensagensBoot[linha];
 
