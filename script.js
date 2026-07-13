@@ -226,3 +226,62 @@ let nick=lista[Math.floor(Math.random()*lista.length)];
 document.getElementById("resultado").innerHTML=nick;
 
 }
+
+// BOOT SYSTEM
+
+let carga = 0;
+
+let barra = document.getElementById("progresso");
+
+let boot = document.getElementById("boot");
+
+let logs = document.getElementById("logs");
+
+
+let mensagens = [
+"[✓] Carregando núcleo...",
+"[✓] Iniciando módulos...",
+"[✓] Verificando sistema...",
+"[✓] Conectando ferramentas...",
+"[✓] Segurança ativa...",
+"[✓] Sistema online..."
+];
+
+
+let i = 0;
+
+
+let carregando = setInterval(()=>{
+
+
+carga += 2;
+
+
+barra.style.width = carga + "%";
+
+
+if(i < mensagens.length && carga % 15 === 0){
+
+logs.innerHTML += mensagens[i] + "<br>";
+
+i++;
+
+}
+
+
+if(carga >= 100){
+
+clearInterval(carregando);
+
+
+setTimeout(()=>{
+
+boot.style.display="none";
+
+},500);
+
+
+}
+
+
+},50);
