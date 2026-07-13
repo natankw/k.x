@@ -1,42 +1,65 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>𝙺.x Cyber Lab.exe</title>
+
 <link rel="stylesheet" href="style.css">
 </head>
+
 
 <body>
 
 <canvas id="matrix"></canvas>
 
+
 <div class="container">
 
-    <h1>𝙺.x Cyber Lab.exe</h1>
-    <p>Security Training Terminal</p>
+<h1>𝙺.x Cyber Lab.exe</h1>
 
-    <div class="terminal" id="terminal">
-        K.x@cyber:~$ inicializando...
-    </div>
+<p>Security Training Terminal</p>
 
-    <div class="tools">
 
-        <button onclick="abrirFerramenta('senha')">
-            🔐 Gerador de Senha
-        </button>
+<div class="terminal">
 
-        <button onclick="abrirFerramenta('nick')">
-            ⚡ Gerador de Nick
-        </button>
+<div id="saida">
+K.x@cyber:~$ inicializando...
+</div>
 
-        <button onclick="abrirFerramenta('info')">
-            💻 Sistema
-        </button>
+<input 
+id="comando"
+placeholder="Digite um comando..."
+autocomplete="off">
 
-    </div>
+</div>
 
-    <div id="painel"></div>
+
+
+<div class="tools">
+
+<button onclick="abrirFerramenta('senha')">
+🔐 Gerador de Senha
+</button>
+
+
+<button onclick="abrirFerramenta('nick')">
+⚡ Gerador de Nick
+</button>
+
+
+<button onclick="abrirFerramenta('info')">
+💻 Sistema
+</button>
+
+
+</div>
+
+
+<div id="painel"></div>
+
 
 </div>
 
@@ -44,4 +67,5 @@
 <script src="script.js"></script>
 
 </body>
+
 </html>
