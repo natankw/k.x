@@ -12,6 +12,7 @@
 <canvas id="matrix"></canvas>
 
 <div class="container">
+
     <h1>𝙺.x Cyber Lab.exe</h1>
     <p>Security Training Terminal</p>
 
@@ -19,10 +20,26 @@
         K.x@cyber:~$ inicializando...
     </div>
 
-    <button>🔐 Segurança</button>
-    <button>🧪 Laboratório</button>
-    <button>⚙️ Ferramentas</button>
+    <div class="tools">
+
+        <button onclick="abrirFerramenta('senha')">
+            🔐 Gerador de Senha
+        </button>
+
+        <button onclick="abrirFerramenta('nick')">
+            ⚡ Gerador de Nick
+        </button>
+
+        <button onclick="abrirFerramenta('info')">
+            💻 Sistema
+        </button>
+
+    </div>
+
+    <div id="painel"></div>
+
 </div>
+
 
 <script src="script.js"></script>
 
