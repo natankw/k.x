@@ -24,6 +24,7 @@ z-index:-1;
 }
 
 
+
 .container{
 
 height:100vh;
@@ -38,7 +39,10 @@ align-items:center;
 
 text-align:center;
 
+padding:15px;
+
 }
+
 
 
 
@@ -53,6 +57,7 @@ text-shadow:0 0 15px red;
 }
 
 
+
 p{
 
 color:#aaa;
@@ -60,6 +65,8 @@ color:#aaa;
 margin:10px;
 
 }
+
+
 
 
 
@@ -87,6 +94,7 @@ text-align:left;
 
 
 
+
 #comando{
 
 width:100%;
@@ -103,7 +111,11 @@ color:#00ff00;
 
 font-size:16px;
 
+font-family:monospace;
+
 }
+
+
 
 
 
@@ -123,7 +135,10 @@ border-radius:8px;
 
 cursor:pointer;
 
+transition:.3s;
+
 }
+
 
 
 
@@ -136,6 +151,7 @@ color:black;
 box-shadow:0 0 20px red;
 
 }
+
 
 
 
@@ -161,20 +177,30 @@ box-shadow:0 0 15px red;
 
 
 
+
+
 #painel p{
 
 color:#00ff00;
 
 }
 
+
+
+
+/* BOOT SYSTEM */
+
+
 #boot{
 
 position:fixed;
 
 top:0;
+
 left:0;
 
 width:100%;
+
 height:100vh;
 
 background:#000;
@@ -192,6 +218,9 @@ z-index:999;
 }
 
 
+
+
+
 #boot h1{
 
 color:red;
@@ -201,11 +230,37 @@ text-shadow:0 0 20px red;
 }
 
 
+
+
 #bootText{
 
 color:#00ff00;
 
 }
+
+
+
+
+.logs{
+
+margin-top:20px;
+
+height:120px;
+
+width:300px;
+
+overflow:hidden;
+
+color:#00ff00;
+
+text-align:left;
+
+font-size:14px;
+
+}
+
+
+
 
 
 .barra{
@@ -221,6 +276,9 @@ margin-top:20px;
 }
 
 
+
+
+
 #progresso{
 
 height:100%;
@@ -230,5 +288,103 @@ width:0%;
 background:red;
 
 box-shadow:0 0 15px red;
+
+}
+
+
+
+
+
+.tools{
+
+display:flex;
+
+justify-content:center;
+
+flex-wrap:wrap;
+
+}
+
+
+
+
+
+/* MOBILE */
+
+
+@media(max-width:600px){
+
+
+h1{
+
+font-size:30px;
+
+}
+
+
+
+.container{
+
+padding:10px;
+
+}
+
+
+
+.terminal{
+
+width:95%;
+
+height:250px;
+
+padding:15px;
+
+}
+
+
+
+#painel{
+
+width:95%;
+
+}
+
+
+
+.tools{
+
+flex-direction:column;
+
+width:95%;
+
+}
+
+
+
+button{
+
+width:100%;
+
+margin:5px 0;
+
+}
+
+
+
+.barra{
+
+width:250px;
+
+}
+
+
+
+#boot h1{
+
+font-size:30px;
+
+}
+
+
 
 }
