@@ -1,128 +1,168 @@
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:monospace;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:monospace;
 }
+
 
 body{
-    background:#000;
-    color:#fff;
-    height:100vh;
-    overflow:hidden;
+background:#000;
+color:white;
+height:100vh;
+overflow:hidden;
 }
+
 
 #matrix{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    z-index:-1;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:-1;
 }
+
 
 .container{
-    height:100vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
+
+height:100vh;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+
+text-align:center;
+
 }
+
+
 
 h1{
-    font-size:45px;
-    color:#ff0000;
-    text-shadow:
-    0 0 10px red,
-    0 0 20px red;
+
+font-size:45px;
+
+color:red;
+
+text-shadow:0 0 15px red;
+
 }
+
 
 p{
-    margin:10px;
-    color:#aaa;
+
+color:#aaa;
+
+margin:10px;
+
 }
+
+
 
 .terminal{
-    width:80%;
-    max-width:700px;
-    height:250px;
-    background:#050505;
-    border:1px solid red;
-    border-radius:10px;
-    padding:20px;
-    text-align:left;
-    color:#00ff00;
-    box-shadow:
-    0 0 15px red;
-    overflow:auto;
+
+width:80%;
+
+max-width:700px;
+
+background:#050505;
+
+border:1px solid red;
+
+border-radius:10px;
+
+padding:20px;
+
+color:#00ff00;
+
+box-shadow:0 0 20px red;
+
+text-align:left;
+
 }
+
+
+
+#comando{
+
+width:100%;
+
+margin-top:15px;
+
+background:#000;
+
+border:none;
+
+outline:none;
+
+color:#00ff00;
+
+font-size:16px;
+
+}
+
+
 
 button{
-    margin:10px;
-    padding:15px 30px;
-    background:#000;
-    color:red;
-    border:1px solid red;
-    border-radius:8px;
-    cursor:pointer;
-    font-size:16px;
-    transition:.3s;
+
+margin:10px;
+
+padding:15px 25px;
+
+background:#000;
+
+color:red;
+
+border:1px solid red;
+
+border-radius:8px;
+
+cursor:pointer;
+
 }
+
+
 
 button:hover{
-    background:red;
-    color:#000;
-    box-shadow:0 0 20px red;
+
+background:red;
+
+color:black;
+
+box-shadow:0 0 20px red;
+
 }
+
+
 
 #painel{
-    margin-top:20px;
-    width:80%;
-    max-width:700px;
-    background:#050505;
-    border:1px solid red;
-    border-radius:10px;
-    padding:20px;
-    color:white;
-    box-shadow:0 0 15px red;
-    text-align:center;
-    animation:aparecer .4s;
+
+margin-top:20px;
+
+width:80%;
+
+max-width:700px;
+
+background:#050505;
+
+border:1px solid red;
+
+border-radius:10px;
+
+padding:20px;
+
+box-shadow:0 0 15px red;
+
 }
 
-#painel h2{
-    color:red;
-    text-shadow:0 0 10px red;
-}
+
 
 #painel p{
-    color:#00ff00;
-    font-size:18px;
-}
 
-#painel button{
-    margin-top:15px;
-}
-
-
-.tools{
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:10px;
-}
-
-
-@keyframes aparecer{
-
-from{
-    opacity:0;
-    transform:scale(.8);
-}
-
-to{
-    opacity:1;
-    transform:scale(1);
-}
+color:#00ff00;
 
 }
