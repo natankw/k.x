@@ -1,101 +1,152 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
 <title>𝙺.x Cyber Lab.exe</title>
 
 <link rel="stylesheet" href="style.css">
-</head>
 
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+</head>
 
 <body>
 
-
 <div id="boot">
 
-    <h1>𝙺.x Cyber Lab.exe</h1>
+<h1 class="glitch">𝙺.x Cyber Lab.exe</h1>
 
-    <p id="bootText">
-        Inicializando sistema...
-    </p>
+<div id="logs"></div>
 
-    <div class="logs" id="logs"></div>
-
-    <div class="barra">
-        <div id="progresso"></div>
-    </div>
-
+<div class="barra">
+<div id="progresso"></div>
 </div>
 
-
+</div>
 
 <canvas id="matrix"></canvas>
 
+<div id="desktop">
 
+<header>
 
-<div class="container">
-
-
-<h1>𝙺.x Cyber Lab.exe</h1>
-
-<p>Security Training Terminal</p>
-
-
-
-<div class="terminal">
-
-<div id="saida">
-K.x@cyber:~$ inicializando...
+<div class="logo">
+⚠ 𝙺.x Cyber OS
 </div>
 
-<input 
+<div id="clock">
+00:00:00
+</div>
+
+</header>
+
+
+<aside>
+
+<button onclick="abrirJanela('terminal')">
+💻 Terminal
+</button>
+
+<button onclick="abrirJanela('tools')">
+🛠 Ferramentas
+</button>
+
+<button onclick="abrirJanela('system')">
+⚙ Sistema
+</button>
+
+<button onclick="abrirJanela('about')">
+📁 Sobre
+</button>
+
+</aside>
+
+
+<main>
+
+<div class="janela active" id="terminal">
+
+<div class="titulo">
+Terminal
+</div>
+
+<div id="saida"></div>
+
+<input
 id="comando"
-placeholder="Digite um comando..."
-autocomplete="off">
+placeholder="Digite um comando...">
 
 </div>
 
 
+<div class="janela" id="tools">
 
+<h2>Ferramentas</h2>
 
-<div class="tools">
+<div class="cards">
 
+<div class="card">
+Gerador de Senha
+</div>
 
-<button onclick="abrirFerramenta('senha')">
-🔐 Gerador de Senha
-</button>
+<div class="card">
+Gerador de Nick
+</div>
 
+<div class="card">
+QR Code
+</div>
 
-<button onclick="abrirFerramenta('nick')">
-⚡ Gerador de Nick
-</button>
+<div class="card">
+Hash MD5
+</div>
 
+<div class="card">
+Base64
+</div>
 
-<button onclick="abrirFerramenta('info')">
-💻 Sistema
-</button>
+<div class="card">
+Bio Generator
+</div>
 
+</div>
 
 </div>
 
 
+<div class="janela" id="system">
 
+<h2>Status do Sistema</h2>
 
-<div id="painel"></div>
+<p>Sistema Online</p>
 
+<p>Firewall: Ativo</p>
 
-
+<p>Versão: 2.0</p>
 
 </div>
 
 
+<div class="janela" id="about">
+
+<h2>Sobre</h2>
+
+<p>𝙺.x Cyber Lab.exe</p>
+
+<p>Cyber Security Interface</p>
+
+<p>Made by K.x</p>
+
+</div>
+
+</main>
+
+</div>
 
 <script src="script.js"></script>
 
-
 </body>
-
-</html>
+    </html>
