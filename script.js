@@ -1,325 +1,229 @@
-// MATRIX
+// ===== MATRIX =====
 
 const canvas = document.getElementById("matrix");
 const ctx = canvas.getContext("2d");
 
-canvas.width = innerWidth;
-canvas.height = innerHeight;
-
-const letras = "01ABCDEFGHIJKLMNOPQRSTUVWXYZ#$%&";
-const tamanho = 14;
-
-let colunas = canvas.width / tamanho;
-let gotas = [];
-
-for(let i = 0; i < colunas; i++){
-    gotas[i] = 1;
+function resize(){
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
 }
 
+resize();
+
+window.onresize=resize;
+
+const letras="01ABCDEFGHIJKLMNOPQRSTUVWXYZ<>[]{}#$%&";
+const fonte=16;
+
+let colunas=Math.floor(canvas.width/fonte);
+let gotas=Array(colunas).fill(1);
 
 function matrix(){
 
-    ctx.fillStyle = "rgba(0,0,0,0.08)";
-    ctx.fillRect(0,0,canvas.width,canvas.height);
+ctx.fillStyle="rgba(0,0,0,.08)";
+ctx.fillRect(0,0,canvas.width,canvas.height);
 
-    ctx.fillStyle = "red";
-    ctx.font = tamanho+"px monospace";
+ctx.fillStyle="#ff0000";
+ctx.font=fonte+"px monospace";
 
-    gotas.forEach((y,i)=>{
+for(let i=0;i<gotas.length;i++){
 
-        let texto = letras[Math.floor(Math.random()*letras.length)];
+let txt=letras[Math.floor(Math.random()*letras.length)];
 
-        ctx.fillText(texto,i*tamanho,y*tamanho);
+ctx.fillText(txt,i*fonte,gotas[i]*fonte);
 
+if(gotas[i]*fonte>canvas.height && Math.random()>0.98){
 
-        if(y*tamanho > canvas.height && Math.random() > 0.975){
-            gotas[i] = 0;
-        }
-
-        gotas[i]++;
-
-    });
+gotas[i]=0;
 
 }
 
-
-setInterval(matrix,50);
-
-
-
-
-// TERMINAL
-
-const comando = document.getElementById("comando");
-const saida = document.getElementById("saida");
-
-
-if(comando && saida){
-
-comando.addEventListener("keydown",e=>{
-
-
-if(e.key === "Enter"){
-
-
-let cmd = comando.value.toLowerCase();
-
-
-saida.innerHTML += 
-"<br>K.x@cyber:~$ " + cmd;
-
-
-
-if(cmd === "help"){
-
-saida.innerHTML +=
-"<br>Comandos: help | about | tools | clear";
+gotas[i]++;
 
 }
 
+}
 
-else if(cmd === "about"){
+setInterval(matrix,35);
 
-saida.innerHTML +=
-"<br>𝙺.x Cyber Lab.exe - Training System";
+
+// ===== RELÓGIO =====
+
+function atualizarHora(){
+
+let d=new Date();
+
+document.getElementById("clock").innerHTML=
+d.toLocaleTimeString();
 
 }
 
+setInterval(atualizarHora,1000);
 
-else if(cmd === "tools"){
-
-saida.innerHTML +=
-"<br>Ferramentas carregadas.";
-
-}
+atualizarHora();
 
 
-else if(cmd === "clear"){
+// ===== JANELAS =====
 
-saida.innerHTML = "";
+function abrirJanela(id){
 
-}
+document.querySelectorAll(".janela").forEach(j=>{
 
-
-else{
-
-saida.innerHTML +=
-"<br>Comando não encontrado.";
-
-}
-
-
-comando.value = "";
-
-}
+j.classList.remove("active");
 
 });
 
+document.getElementById(id).classList.add("active");
+
 }
 
 
+// ===== TERMINAL =====
+
+const saida=document.getElementById("saida");
+const comando=document.getElementById("comando");
+
+function print(txt){
+
+saida.innerHTML+="<div>"+txt+"</div>";
+
+saida.scrollTop=saida.scrollHeight;
+
+}
+
+print("K.x Cyber Lab v2 iniciado.");
+print("Digite HELP para listar comandos.");
+
+comando.addEventListener("keydown",e=>{
+
+if(e.key!="Enter") return;
+
+let cmd=comando.value.trim();
+
+let low=cmd.toLowerCase();
+
+print("> "+cmd);
+
+switch(low){
+
+case "help":
+
+print("help");
+print("about");
+print("clear");
+print("date");
+print("time");
+print("system");
+print("version");
+print("whoami");
+
+break;
+
+case "about":
+
+print("Cyber Security Interface");
+
+break;
+
+case "system":
+
+print("Status: ONLINE");
+print("Firewall: ATIVO");
+print("Memória: OK");
+
+break;
+
+case "version":
+
+print("Cyber Lab v2.0");
+
+break;
+
+case "whoami":
+
+print("K.x");
+
+break;
+
+case "date":
+
+print(new Date().toLocaleDateString());
+
+break;
+
+case "time":
+
+print(new Date().toLocaleTimeString());
+
+break;
+
+case "clear":
+
+saida.innerHTML="";
+
+break;
+
+default:
+
+if(low.startsWith("echo ")){
+
+print(cmd.substring(5));
+
+}else{
+
+print("Comando desconhecido.");
+
+}
+
+}
+
+comando.value="";
+
+});
 
 
-// AUTO TERMINAL
+// ===== BOOT =====
 
-let mensagensBoot = [
+const boot=document.getElementById("boot");
+const progresso=document.getElementById("progresso");
+const logs=document.getElementById("logs");
 
-"K.x@cyber:~$ acesso iniciado...",
-"K.x@cyber:~$ carregando ferramentas...",
-"K.x@cyber:~$ sistema protegido...",
-"K.x@cyber:~$ pronto para comandos."
-
+let msgs=[
+"Iniciando Kernel...",
+"Verificando módulos...",
+"Inicializando Firewall...",
+"Carregando Interface...",
+"Conectando Terminal...",
+"Cyber Lab Online."
 ];
 
+let p=0;
+let l=0;
 
-let linha = 0;
+let bootLoop=setInterval(()=>{
 
+p+=2;
 
-function digitarTerminal(){
+progresso.style.width=p+"%";
 
-if(saida && linha < mensagensBoot.length){
+if(l<msgs.length && p%15==0){
 
-saida.innerHTML += "<br>" + mensagensBoot[linha];
+logs.innerHTML+=msgs[l]+"<br>";
 
-linha++;
-
-setTimeout(digitarTerminal,900);
-
-}
-
-}
-
-
-setTimeout(digitarTerminal,1500);
-
-
-
-
-// FERRAMENTAS
-
-
-function abrirFerramenta(tipo){
-
-let painel = document.getElementById("painel");
-
-
-if(!painel) return;
-
-
-
-if(tipo === "senha"){
-
-painel.innerHTML = `
-
-<h2>🔐 Gerador de Senha</h2>
-
-<button onclick="gerarSenha()">
-Gerar
-</button>
-
-<p id="resultado"></p>
-
-`;
+l++;
 
 }
 
+if(p>=100){
 
-
-if(tipo === "nick"){
-
-painel.innerHTML = `
-
-<h2>⚡ Gerador de Nick</h2>
-
-<button onclick="gerarNick()">
-Criar
-</button>
-
-<p id="resultado"></p>
-
-`;
-
-}
-
-
-
-if(tipo === "info"){
-
-painel.innerHTML = `
-
-<h2>💻 Sistema</h2>
-
-<p>𝙺.x Cyber Lab online</p>
-
-`;
-
-}
-
-}
-
-
-
-function gerarSenha(){
-
-let senha = Math.random()
-.toString(36)
-.substring(2,12);
-
-
-document.getElementById("resultado").innerHTML = senha;
-
-}
-
-
-
-function gerarNick(){
-
-let lista = [
-
-"𝙺.x_HΞLL",
-"404_Shadow",
-"CyberGhost",
-"Root_Kx",
-"Null.exe"
-
-];
-
-
-let nick = lista[Math.floor(Math.random()*lista.length)];
-
-
-document.getElementById("resultado").innerHTML = nick;
-
-}
-
-
-
-
-// BOOT SYSTEM
-
-let carga = 0;
-
-let barra = document.getElementById("progresso");
-let boot = document.getElementById("boot");
-let logs = document.getElementById("logs");
-
-
-let mensagens = [
-
-"[✓] Carregando núcleo...",
-"[✓] Iniciando módulos...",
-"[✓] Verificando sistema...",
-"[✓] Conectando ferramentas...",
-"[✓] Segurança ativa...",
-"[✓] Sistema online..."
-
-];
-
-
-let i = 0;
-
-
-let carregando = setInterval(()=>{
-
-
-carga += 2;
-
-
-if(barra){
-
-barra.style.width = carga + "%";
-
-}
-
-
-
-if(logs && i < mensagens.length && carga % 15 === 0){
-
-logs.innerHTML += mensagens[i] + "<br>";
-
-i++;
-
-}
-
-
-
-if(carga >= 100){
-
-clearInterval(carregando);
-
-
-if(boot){
+clearInterval(bootLoop);
 
 setTimeout(()=>{
 
-boot.style.display = "none";
+boot.style.display="none";
 
-},500);
-
-}
-
+},700);
 
 }
 
-
-},50);
+},40);
