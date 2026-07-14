@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>𝙺.x Cyber Lab.exe</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>𝙺.x Cyber OS</title>
 
 <link rel="stylesheet" href="style.css">
 
@@ -15,71 +17,116 @@
 
 <body>
 
+<!-- BOOT -->
+
 <div id="boot">
 
-<h1 class="glitch">𝙺.x Cyber Lab.exe</h1>
+<h1 class="glitch">𝙺.x Cyber OS</h1>
+
+<p id="bootText">Inicializando Sistema...</p>
 
 <div id="logs"></div>
 
 <div class="barra">
+
 <div id="progresso"></div>
+
 </div>
 
 </div>
+
+
+
+<!-- MATRIX -->
 
 <canvas id="matrix"></canvas>
 
+
+
+<!-- DESKTOP -->
+
 <div id="desktop">
+
+<!-- TOPO -->
 
 <header>
 
 <div class="logo">
+
 ⚠ 𝙺.x Cyber OS
+
 </div>
 
-<div id="clock">
-00:00:00
+<div class="status">
+
+<span id="clock">00:00:00</span>
+
 </div>
 
 </header>
 
 
-<aside>
+
+<!-- MENU -->
+
+<nav id="menu">
 
 <button onclick="abrirJanela('terminal')">
+
 💻 Terminal
+
 </button>
 
 <button onclick="abrirJanela('tools')">
+
 🛠 Ferramentas
+
+</button>
+
+<button onclick="abrirJanela('network')">
+
+🌐 Network
+
 </button>
 
 <button onclick="abrirJanela('system')">
+
 ⚙ Sistema
+
 </button>
 
 <button onclick="abrirJanela('about')">
-📁 Sobre
+
+📄 Sobre
+
 </button>
 
-</aside>
+</nav>
 
 
-<main>
+
+<!-- ÁREA -->
+
+<section id="workspace">
 
 <div class="janela active" id="terminal">
 
 <div class="titulo">
+
 Terminal
+
 </div>
 
 <div id="saida"></div>
 
 <input
+
 id="comando"
+
 placeholder="Digite um comando...">
 
 </div>
+
 
 
 <div class="janela" id="tools">
@@ -88,40 +135,39 @@ placeholder="Digite um comando...">
 
 <div class="cards">
 
-<div class="card">
-Gerador de Senha
-</div>
+<div class="card">🔐 Senhas</div>
 
-<div class="card">
-Gerador de Nick
-</div>
+<div class="card">⚡ Nick</div>
 
-<div class="card">
-QR Code
-</div>
+<div class="card">📝 Bio</div>
 
-<div class="card">
-Hash MD5
-</div>
+<div class="card">🔑 Hash</div>
 
-<div class="card">
-Base64
-</div>
+<div class="card">📷 QR Code</div>
 
-<div class="card">
-Bio Generator
-</div>
+<div class="card">🔤 Base64</div>
 
 </div>
 
 </div>
+
+
+
+<div class="janela" id="network">
+
+<h2>Network</h2>
+
+<p>Em desenvolvimento...</p>
+
+</div>
+
 
 
 <div class="janela" id="system">
 
-<h2>Status do Sistema</h2>
+<h2>Sistema</h2>
 
-<p>Sistema Online</p>
+<p>Status: Online</p>
 
 <p>Firewall: Ativo</p>
 
@@ -130,11 +176,12 @@ Bio Generator
 </div>
 
 
+
 <div class="janela" id="about">
 
 <h2>Sobre</h2>
 
-<p>𝙺.x Cyber Lab.exe</p>
+<p>𝙺.x Cyber OS</p>
 
 <p>Cyber Security Interface</p>
 
@@ -142,11 +189,28 @@ Bio Generator
 
 </div>
 
-</main>
+</section>
+
+
+
+<!-- RODAPÉ -->
+
+<footer>
+
+<span id="statusBar">
+
+● ONLINE
+
+</span>
+
+</footer>
 
 </div>
+
+
 
 <script src="script.js"></script>
 
 </body>
-    </html>
+
+</html>
