@@ -1,60 +1,63 @@
-// ===== MATRIX =====
+//========================
+// MATRIX
+//========================
 
-const canvas = document.getElementById("matrix");
-const ctx = canvas.getContext("2d");
+const canvas=document.getElementById("matrix");
+const ctx=canvas.getContext("2d");
 
 function resize(){
+
 canvas.width=window.innerWidth;
 canvas.height=window.innerHeight;
+
 }
 
 resize();
 
-window.onresize=resize;
+window.addEventListener("resize",resize);
 
-const letras="01ABCDEFGHIJKLMNOPQRSTUVWXYZ<>[]{}#$%&";
-const fonte=16;
+const chars="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#$%&<>[]{}";
+const size=16;
 
-let colunas=Math.floor(canvas.width/fonte);
-let gotas=Array(colunas).fill(1);
+let columns=Math.floor(canvas.width/size);
+let drops=Array(columns).fill(1);
 
-function matrix(){
+function drawMatrix(){
 
 ctx.fillStyle="rgba(0,0,0,.08)";
 ctx.fillRect(0,0,canvas.width,canvas.height);
 
-ctx.fillStyle="#ff0000";
-ctx.font=fonte+"px monospace";
+ctx.fillStyle="#ff0033";
+ctx.font=size+"px monospace";
 
-for(let i=0;i<gotas.length;i++){
+for(let i=0;i<drops.length;i++){
 
-let txt=letras[Math.floor(Math.random()*letras.length)];
+let text=chars[Math.floor(Math.random()*chars.length)];
 
-ctx.fillText(txt,i*fonte,gotas[i]*fonte);
+ctx.fillText(text,i*size,drops[i]*size);
 
-if(gotas[i]*fonte>canvas.height && Math.random()>0.98){
+if(drops[i]*size>canvas.height&&Math.random()>0.98){
 
-gotas[i]=0;
-
-}
-
-gotas[i]++;
+drops[i]=0;
 
 }
 
+drops[i]++;
+
 }
 
-setInterval(matrix,35);
+}
 
+setInterval(drawMatrix,35);
 
-// ===== RELÓGIO =====
+//========================
+// RELÓGIO
+//========================
 
 function atualizarHora(){
 
-let d=new Date();
-
 document.getElementById("clock").innerHTML=
-d.toLocaleTimeString();
+new Date().toLocaleTimeString();
 
 }
 
@@ -62,8 +65,59 @@ setInterval(atualizarHora,1000);
 
 atualizarHora();
 
+//========================
+// BOOT
+//========================
 
-// ===== JANELAS =====
+const boot=document.getElementById("boot");
+const barra=document.getElementById("progresso");
+const logs=document.getElementById("logs");
+
+const bootLogs=[
+
+"Inicializando Kernel...",
+"Carregando Interface...",
+"Verificando Firewall...",
+"Abrindo Terminal...",
+"Conectando Ferramentas...",
+"Sistema Online."
+
+];
+
+let progresso=0;
+let linha=0;
+
+const bootLoop=setInterval(()=>{
+
+progresso+=2;
+
+barra.style.width=progresso+"%";
+
+if(linha<bootLogs.length&&progresso%15===0){
+
+logs.innerHTML+=bootLogs[linha]+"<br>";
+
+linha++;
+
+}
+
+if(progresso>=100){
+
+clearInterval(bootLoop);
+
+setTimeout(()=>{
+
+boot.style.display="none";
+
+},700);
+
+}
+
+},40);
+
+//========================
+// JANELAS
+//========================
 
 function abrirJanela(id){
 
@@ -77,22 +131,23 @@ document.getElementById(id).classList.add("active");
 
 }
 
-
-// ===== TERMINAL =====
+//========================
+// TERMINAL
+//========================
 
 const saida=document.getElementById("saida");
 const comando=document.getElementById("comando");
 
-function print(txt){
+function print(text){
 
-saida.innerHTML+="<div>"+txt+"</div>";
+saida.innerHTML+="<div>"+text+"</div>";
 
 saida.scrollTop=saida.scrollHeight;
 
 }
 
-print("K.x Cyber Lab v2 iniciado.");
-print("Digite HELP para listar comandos.");
+print("𝙺.x Cyber OS iniciado.");
+print("Digite HELP");
 
 comando.addEventListener("keydown",e=>{
 
@@ -104,60 +159,64 @@ let low=cmd.toLowerCase();
 
 print("> "+cmd);
 
-switch(low){
+switch(true){
 
-case "help":
+case low=="help":
 
 print("help");
 print("about");
-print("clear");
-print("date");
-print("time");
 print("system");
 print("version");
+print("clear");
+print("cls");
+print("date");
+print("time");
 print("whoami");
+print("echo");
 
 break;
 
-case "about":
+case low=="about":
 
+print("𝙺.x Cyber OS");
 print("Cyber Security Interface");
 
 break;
 
-case "system":
+case low=="system":
 
 print("Status: ONLINE");
 print("Firewall: ATIVO");
-print("Memória: OK");
+print("Terminal: OK");
 
 break;
 
-case "version":
+case low=="version":
 
-print("Cyber Lab v2.0");
-
-break;
-
-case "whoami":
-
-print("K.x");
+print("Versão 2.0");
 
 break;
 
-case "date":
+case low=="date":
 
 print(new Date().toLocaleDateString());
 
 break;
 
-case "time":
+case low=="time":
 
 print(new Date().toLocaleTimeString());
 
 break;
 
-case "clear":
+case low=="whoami":
+
+print("K.x");
+
+break;
+
+case low=="clear":
+case low=="cls":
 
 saida.innerHTML="";
 
@@ -171,7 +230,7 @@ print(cmd.substring(5));
 
 }else{
 
-print("Comando desconhecido.");
+print("Comando não encontrado.");
 
 }
 
@@ -179,51 +238,88 @@ print("Comando desconhecido.");
 
 comando.value="";
 
+// foco automático
+
+comando.focus();
+
 });
 
+//========================
+// FERRAMENTAS
+//========================
 
-// ===== BOOT =====
+function gerarSenha(tam=14){
 
-const boot=document.getElementById("boot");
-const progresso=document.getElementById("progresso");
-const logs=document.getElementById("logs");
+const chars="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&";
 
-let msgs=[
-"Iniciando Kernel...",
-"Verificando módulos...",
-"Inicializando Firewall...",
-"Carregando Interface...",
-"Conectando Terminal...",
-"Cyber Lab Online."
+let senha="";
+
+for(let i=0;i<tam;i++){
+
+senha+=chars[Math.floor(Math.random()*chars.length)];
+
+}
+
+return senha;
+
+}
+
+function gerarNick(){
+
+const inicio=[
+
+"K.x",
+
+"Ghost",
+
+"Null",
+
+"Shadow",
+
+"Root",
+
+"Zero"
+
 ];
 
-let p=0;
-let l=0;
+const fim=[
 
-let bootLoop=setInterval(()=>{
+"404",
 
-p+=2;
+"X",
 
-progresso.style.width=p+"%";
+".exe",
 
-if(l<msgs.length && p%15==0){
+"HΞLL",
 
-logs.innerHTML+=msgs[l]+"<br>";
+"777",
 
-l++;
+"999"
 
-}
+];
 
-if(p>=100){
-
-clearInterval(bootLoop);
-
-setTimeout(()=>{
-
-boot.style.display="none";
-
-},700);
+return inicio[Math.floor(Math.random()*inicio.length)]+"_"+fim[Math.floor(Math.random()*fim.length)];
 
 }
 
-},40);
+function gerarBio(){
+
+const bios=[
+
+"Cyber Security",
+
+"Always Learning",
+
+"404 Not Found",
+
+"Root Access",
+
+"Think Different",
+
+"Digital Ghost"
+
+];
+
+return bios[Math.floor(Math.random()*bios.length)];
+
+}
